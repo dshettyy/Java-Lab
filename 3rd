@@ -1,0 +1,41 @@
+System.out.println(Thread.currentThread().getName() +
+" stopped.");
+ }
+ }
+ // Method to suspend the thread
+ public void suspendThread() {
+ suspended = true;
+ }
+ // Method to resume the thread
+ public synchronized void resumeThread() {
+ suspended = false;
+ notify(); // Notify waiting thread
+ }
+ // Method to stop the thread
+ public void stopThread() {
+ stopped = true;
+ }
+}
+Main Class
+public class ThreadControlDemo {
+ public static void main(String[] args) {
+ MyThread t1 = new MyThread();
+ t1.start();
+ try {
+ // Allow thread to run for 3 seconds
+ Thread.sleep(3000);
+ 
+ System.out.println("Suspending thread...");
+ t1.suspendThread();
+ Thread.sleep(3000);
+ 
+ System.out.println("Resuming thread...");
+ t1.resumeThread();
+ Thread.sleep(3000);
+ System.out.println("Stopping thread...");
+ t1.stopThread();
+ } catch (InterruptedException e) {
+ System.out.println(e);
+ }
+ }
+}
