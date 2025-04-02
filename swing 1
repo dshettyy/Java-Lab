@@ -1,0 +1,41 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class LoginForm {
+ public static void main(String[] args) {
+ JFrame frame = new JFrame("Login Form");
+ frame.setSize(300, 200);
+ 
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CL
+OSE);
+ frame.setLayout(null);
+ JLabel userLabel = new JLabel("Username:");
+ userLabel.setBounds(20, 30, 80, 25);
+ JTextField userText = new JTextField();
+ userText.setBounds(100, 30, 150, 25);
+ JLabel passLabel = new JLabel("Password:");
+ passLabel.setBounds(20, 70, 80, 25);
+ JPasswordField passText = new JPasswordField();
+ passText.setBounds(100, 70, 150, 25);
+ JButton loginButton = new JButton("Login");
+ loginButton.setBounds(100, 110, 80, 30);
+ loginButton.addActionListener(e -> {
+ String username = userText.getText();
+String password = new
+String(passText.getPassword());
+ if ("admin".equals(username) &&
+"1234".equals(password)) {
+ JOptionPane.showMessageDialog(frame,
+"Login Successful!");
+ } else {
+ JOptionPane.showMessageDialog(frame,
+"Invalid Credentials");
+ }
+ });
+ frame.add(userLabel);
+ frame.add(userText);
+ frame.add(passLabel);
+ frame.add(passText);
+ frame.add(loginButton);
+ frame.setVisible(true);
+ }
